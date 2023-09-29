@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cardImage {
+  width: auto;
+  height: auto;
+  max-height: 275px;
+  }
+
+  .fontSize {
+    font-size: 18px;
+  }

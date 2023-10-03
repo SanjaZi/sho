@@ -20,7 +20,7 @@ export const Home = ({onAdd}) => {
         });
 
         setFullCart((current) =>
-        current.filter((fruit) => fruit.id !== id)
+        current.filter((el) => el.id !== id)
       );
 
         setCart(arrayWithoutid);

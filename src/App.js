@@ -7,31 +7,26 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 
 function App() {
-
-const [cartLength, setCartLength] = useState(0);
 const [fullCartHome, setFullCartHome] = useState([]);
 let [price, setPrice] = useState(0);
 
 
 const getLength = (length, fullCart) => {
-  setCartLength(length);
-  setFullCartHome(fullCart);
-
- setPrice(result);
-  
+setFullCartHome(fullCart);
+setPrice(result);  
 }
 
-const removedFromCart = (element, length) => {
+const removedFromCart = (element) => {
   setFullCartHome(element);
-  setCartLength(length);
+  setPrice(result);
 }
 
 const result = fullCartHome.reduce((total, currentValue) => total = total + currentValue.price,0);
 
   return (  
   <Router>
-    <div className=" ml-32 mr-32 mb-14 ">
-      <Header cartLength={cartLength}/>
+    <div className="xl:ml-32 xl:mr-32 xl:mb-14 sm:ml-12 sm:mr-12 ">
+      <Header cartLength={fullCartHome.length} price={price}/>
         <Routes>  
           <Route path="/" element={ <Home onAdd={getLength}/>}></Route>
           <Route path="/cart" element={<CartPage  fullCartHome={fullCartHome} onRemove={removedFromCart} price={price} />}></Route>

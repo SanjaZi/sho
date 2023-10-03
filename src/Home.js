@@ -18,10 +18,15 @@ export const Home = ({onAdd}) => {
             return number !== id;
             
         });
-        console.log(arrayWithoutid);
+
+        setFullCart((current) =>
+        current.filter((fruit) => fruit.id !== id)
+      );
+
         setCart(arrayWithoutid);
+        console.log(arrayWithoutid, "array without id from home");
        
-      };
+       };
 
    
     onAdd(cart.length, fullCart);
@@ -40,7 +45,7 @@ export const Home = ({onAdd}) => {
     </a>
     <div className="px-5 pb-5">
         <a href="!#">
-            <h5 className="text-xl font-medium tracking-tight text-gray-900 dark:text-white fontSize">A{card.name}</h5>
+            <h5 className="text-xl font-medium tracking-tight text-gray-900 dark:text-white fontSize">{card.name}</h5>
         </a>
         <div className="flex items-center mt-2.5 mb-5">
             <svg className="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">

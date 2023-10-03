@@ -21,21 +21,21 @@ const cards = [
     {
         id: 4,
         name: "Logitech H111 Wired",
-        price: 30,
+        price: 40,
         img: "https://shopmatecr-ul.netlify.app/assets/images/1004.png"
       },
 
       {
         id: 5,
         name: "APPLE Airpods Max Bluetooth Headset",
-        price: 80,
+        price: 50,
         img: "https://shopmatecr-ul.netlify.app/assets/images/1005.png"
       },
 
       {
         id: 6,
         name: "ZEBRONICS Zeb-Thunder Wired",
-        price: 80,
+        price: 60,
         img: "https://shopmatecr-ul.netlify.app/assets/images/1006.png"
       },
   ];

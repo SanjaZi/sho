@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from "./Header.js";
 import { Home } from './Home.js';
 import {CartPage } from './CartPage.js'
@@ -7,21 +7,29 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 
 function App() {
-const [fullCartHome, setFullCartHome] = useState([]);
-let [price, setPrice] = useState(0);
+const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+console.log(storedCartItems, "stored cart items");
+const [fullCartHome, setFullCartHome] = useState(storedCartItems);
+const [price, setPrice] = useState(0);
+
+useEffect(() => {
+  // Save cart items to localStorage whenever fullCartHome changes
+  localStorage.setItem('cartItems', JSON.stringify(fullCartHome));
+}, [fullCartHome]);
 
 
 const getLength = (length, fullCart) => {
-setFullCartHome(fullCart);
-setPrice(result);  
+  setFullCartHome(fullCart);
+  const totalPrice = fullCart.reduce((total, currentValue) => total + currentValue.price, 0);
+  setPrice(totalPrice);
 }
 
 const removedFromCart = (element) => {
   setFullCartHome(element);
-  setPrice(result);
+  const totalPrice = element.reduce((total, currentValue) => total + currentValue.price, 0);
+  setPrice(totalPrice);
 }
 
-const result = fullCartHome.reduce((total, currentValue) => total = total + currentValue.price,0);
 
   return (  
   <Router>

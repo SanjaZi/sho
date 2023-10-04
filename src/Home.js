@@ -28,8 +28,8 @@ export const Home = ({onAdd}) => {
        
        };
 
-   
-    onAdd(cart.length, fullCart);
+
+    onAdd(fullCart);
 
         
 

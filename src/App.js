@@ -8,7 +8,7 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 function App() {
 const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-console.log(storedCartItems, "stored cart items");
+// console.log(storedCartItems, "stored cart items");
 const [fullCartHome, setFullCartHome] = useState(storedCartItems);
 const [price, setPrice] = useState(0);
 
@@ -18,7 +18,7 @@ useEffect(() => {
 }, [fullCartHome]);
 
 
-const getLength = (length, fullCart) => {
+const getLength = (fullCart) => {
   setFullCartHome(fullCart);
   const totalPrice = fullCart.reduce((total, currentValue) => total + currentValue.price, 0);
   setPrice(totalPrice);

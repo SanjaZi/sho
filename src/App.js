@@ -1,35 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from "./Header.js";
 import { Home } from './Home.js';
 import {CartPage } from './CartPage.js'
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 
-
 function App() {
-const [fullCartHome, setFullCartHome] = useState([]);
-let [price, setPrice] = useState(0);
+
+const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+const [fullCartHome, setFullCartHome] = useState(storedCartItems);
+const [price, setPrice] = useState(0);
+
+useEffect(() => {
+  // Save cart items to localStorage whenever fullCartHome changes
+  localStorage.setItem('cartItems', JSON.stringify(fullCartHome));
+}, [fullCartHome]);
 
 
-const getLength = (length, fullCart) => {
-setFullCartHome(fullCart);
-setPrice(result);  
+const getLength = (fullCart) => {
+  setFullCartHome(fullCart);
+  const totalPrice = fullCart.reduce((total, currentValue) => total + currentValue.price, 0);
+  setPrice(totalPrice);
 }
 
-const removedFromCart = (element) => {
-  setFullCartHome(element);
-  setPrice(result);
+
+const removedFromCart = (fullCart) => {
+  setFullCartHome(fullCart);
+  const totalPrice = fullCart.reduce((total, currentValue) => total + currentValue.price, 0);
+  setPrice(totalPrice);
 }
 
-const result = fullCartHome.reduce((total, currentValue) => total = total + currentValue.price,0);
 
   return (  
   <Router>
     <div className="xl:ml-32 xl:mr-32 xl:mb-14 sm:ml-12 sm:mr-12 ">
       <Header cartLength={fullCartHome.length} price={price}/>
         <Routes>  
-          <Route path="/" element={ <Home onAdd={getLength}/>}></Route>
-          <Route path="/cart" element={<CartPage  fullCartHome={fullCartHome} onRemove={removedFromCart} price={price} />}></Route>
+          <Route path="/" element={ <Home onAdd={getLength} fullCartHome={fullCartHome} />}></Route>
+          <Route path="/cart" element={<CartPage  fullCartHome={fullCartHome} onRemove={removedFromCart} price={price}  />}></Route>
          </Routes>
     </div>
   </Router>

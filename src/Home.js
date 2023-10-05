@@ -3,18 +3,18 @@ import { useState } from "react";
 import cards from './Cards.js';
 
 
-export const Home = ({onAdd}) => {
+export const Home = ({onAdd, stored, fullCartHome}) => {
 
-   const [cart, setCart] = useState([]);
-   const [fullCart, setFullCart] = useState([]);
+   const [cartId, setCartId] = useState([]);
+   const [fullCart, setFullCart] = useState(fullCartHome);
 
    const handleAddToCart = (id, name, img, price) => {
-        setCart([...cart, id]); 
+        setCartId([...cartId, id]); 
         setFullCart([...fullCart, {id: id, name: name, price: price, img}]);
         };
 
     const handleRemoveFromCart = (id) => {
-        const arrayWithoutid = cart.filter(function (number) {
+        const arrayWithoutid = cartId.filter(function (number) {
             return number !== id;
             
         });
@@ -23,13 +23,15 @@ export const Home = ({onAdd}) => {
         current.filter((el) => el.id !== id)
       );
 
-        setCart(arrayWithoutid);
+        setCartId(arrayWithoutid);
         console.log(arrayWithoutid, "array without id from home");
        
        };
 
 
-    onAdd(fullCart);
+    onAdd(fullCart, cartId);
+
+    console.log(cartId, "cart from home")
 
         
 
@@ -67,7 +69,7 @@ export const Home = ({onAdd}) => {
         </div>
         <div className="flex items-center justify-between">
             <span className="text-3xl font-bold text-gray-900 dark:text-white">${card.price}</span>
-            {cart.includes(card.id) ? (<button className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"  onClick={() => handleRemoveFromCart(card.id)}>
+            {cartId.includes(card.id) ? (<button className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"  onClick={() => handleRemoveFromCart(card.id)}>
             Remove from cart
           </button>) :  <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"  onClick={() => handleAddToCart(card.id, card.name, card.img, card.price)}>
             Add to cart
@@ -81,5 +83,4 @@ export const Home = ({onAdd}) => {
   </div>
   )
 }
-
 

@@ -7,11 +7,10 @@ const [newCart, setNewCart] = useState(fullCartHome);
 const handleRemoveFromCart = (id) => {
    let updatedArray = fullCartHome.filter(obj => obj.id !== id);
    setNewCart(updatedArray);
+
   };
 
- onRemove(newCart, newCart.length);
-
- 
+ onRemove(newCart);
 
   return (<>
    <h2 className="text-center text-3xl font-bold my-12">Cart Items {newCart.length} / ${price}</h2>
@@ -27,7 +26,6 @@ const handleRemoveFromCart = (id) => {
             Remove
           </button>
     </div>
-
         </li>
       ))}
     </ul>

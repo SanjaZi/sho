@@ -1,4 +1,4 @@
-const cards = [
+const products = [
     {
       id: 1,
       name: "Sony Wh-Ch510 Bluetooth Wireless",
@@ -40,5 +40,5 @@ const cards = [
       },
   ];
 
-  export default cards;
+  export default products;
   

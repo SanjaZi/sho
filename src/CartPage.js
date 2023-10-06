@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const CartPage = ({fullCartHome, onRemove, price}) => {
 
@@ -7,10 +7,11 @@ const [newCart, setNewCart] = useState(fullCartHome);
 const handleRemoveFromCart = (id) => {
    let updatedArray = fullCartHome.filter(obj => obj.id !== id);
    setNewCart(updatedArray);
-
   };
 
- onRemove(newCart);
+  useEffect(() => {
+    onRemove(newCart);
+  }, [newCart, onRemove]);
 
   return (<>
    <h2 className="text-center text-3xl font-bold my-12">Cart Items {newCart.length} / ${price}</h2>

@@ -1,9 +1,9 @@
 import React from 'react';
-import { useState } from "react";
-import cards from './Cards.js';
+import { useState, useEffect } from "react";
+import products from './Products.js';
 
 
-export const Home = ({onAdd, fullCartHome}) => {
+export const Main = ({onAdd, fullCartHome}) => {
 
    const [fullCart, setFullCart] = useState(fullCartHome);
 
@@ -17,13 +17,16 @@ export const Home = ({onAdd, fullCartHome}) => {
       );
        };
 
+       useEffect(() => {
+        onAdd(fullCart);
+      }, [fullCart, onAdd]);
 
-    onAdd(fullCart);
+   
 
   return (
     <div  >
     <ul className="flex flex-row justify-between flex-wrap	">
-      {cards.map((card) => (
+      {products.map((card) => (
         <li key={card.id}>
         <div className="w-full h-auto max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-20">
     

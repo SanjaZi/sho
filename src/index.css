@@ -12,3 +12,11 @@
     font-size: 18px;
   }
 
+  /* #root {
+    background-color: rgb(17 24 39);
+  } */
+
+  li a.active {
+    font-weight: bold;
+    color: blue;
+  }

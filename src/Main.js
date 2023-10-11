@@ -25,10 +25,10 @@ export const Main = ({onAdd, fullCartHome}) => {
 
   return (
     <div  >
-    <ul className="flex flex-row justify-between flex-wrap	">
+    <ul className="flex flex-row justify-between flex-wrap 	">
       {products.map((card) => (
         <li key={card.id}>
-        <div className="w-full h-auto max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-20">
+        <div className="w-full h-auto max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-20 xl:mb-12">
     
         <img className="p-8 rounded-t-lg cardImage" src={card.img} alt="" />
    

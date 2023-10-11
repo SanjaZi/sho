@@ -24,7 +24,7 @@ const onAddRemove = (fullCart) => {
 
   return (  
   <Router>
-    <div className="xl:ml-32 xl:mr-32 xl:mb-14 sm:ml-12 sm:mr-12 ">
+    <div className="xl:ml-32 xl:mr-32 sm:ml-12 sm:mr-12 dark:bg-gray-900 ">
       <Header cartLength={fullCartHome.length} price={price}/>
         <Routes>  
           <Route path="/" element={ <Main onAdd={onAddRemove} fullCartHome={fullCartHome} />}></Route>
